@@ -1,0 +1,75 @@
+﻿
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.PageTitle;
+}
+
+    
+
+    <p>
+        <h1>@ViewData["Title"]</h1>
+        @RenderSection("Create")
+    </p>
+
+<form asp-page="./Index" method="get">
+    <div class="form-inline">
+        <p>
+            Find by:
+            &nbsp;
+            <input class="form-control" type="text" name="SearchString" value="@Model.SearchString" />
+            &nbsp;
+            <input type="submit" value="Search" class="btn btn-light" /> |
+            &nbsp;
+            <a asp-page="./Index">Back to full List</a>
+        </p>
+    </div>
+</form>
+
+<p />
+
+@RenderBody()
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<div class="form-inline">
+
+    <a asp-page="./Index"
+       asp-route-sortOrder="@Model.CurrentSort"
+       asp-route-pageIndex="1"
+       asp-route-currentFilter="@Model.CurrentFilter"
+       class="btn btn-link @prevDisabled">
+        First
+    </a>
+    &nbsp;
+    <a asp-page="./Index"
+       asp-route-sortOrder="@Model.CurrentSort"
+       asp-route-pageIndex="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@Model.CurrentFilter"
+       class="btn btn-link @prevDisabled">
+        Previous
+    </a>
+    &nbsp;
+    Page @Model.PageIndex of @Model.TotalPages
+    &nbsp;
+
+    <a asp-page="./Index"
+       asp-route-sortOrder="@Model.CurrentSort"
+       asp-route-pageIndex="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@Model.CurrentFilter"
+       class="btn btn-link @nextDisabled">
+        Next
+    </a>
+    &nbsp;
+    <a asp-page="./Index"
+       asp-route-sortOrder="@Model.CurrentSort"
+       asp-route-pageIndex="@(Model.TotalPages)"
+       asp-route-currentFilter="@Model.CurrentFilter"
+       class="btn btn-link @nextDisabled">
+        Last
+    </a>
+   
+</div>

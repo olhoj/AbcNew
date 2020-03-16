@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.PageTitle;
+    var itemId = Model.ItemId;
+}
+
+<p>
+<h1>@ViewData["Title"]</h1>
+
+</p>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Item</h4>
+    <hr />
+    <dl class="row">
+        @RenderBody()
+
+    </dl>
+
+    <form method="post">
+        <input type="hidden" asp-for="@itemId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "_Layout";
+    ViewData["Title"] = Model.PageTitle;
+    var itemId = Model.ItemId;
+}
+
+<p>
+    <h1>@ViewData["Title"]</h1>
+
+</p>
+<h1>Details</h1>
+
+<div>
+    <h4>Item</h4>
+    <hr />
+    <dl class="row">
+       @RenderBody()
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@itemId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>
