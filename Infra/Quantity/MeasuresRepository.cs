@@ -1,9 +1,4 @@
 ﻿using Abc.Domain.Quantity;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Linq;
 using Abc.Data.Quantity;
 
 namespace Abc.Infra.Quantity
