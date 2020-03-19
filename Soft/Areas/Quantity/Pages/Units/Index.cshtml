@@ -33,7 +33,7 @@
                     page,
                     item.Id,
                     Html.DisplayFor(modelItem => item.Id),
-                    Html.DisplayFor(modelItem => item.MeasureId),
+                    Html.Raw(Model.GetMeasureName(item.MeasureId)),
                     Html.DisplayFor(modelItem => item.Name),
                     Html.DisplayFor(modelItem => item.Code),
                     Html.DisplayFor(modelItem => item.Definition),

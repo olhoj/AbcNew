@@ -9,7 +9,6 @@ namespace Abc.Pages.Quantity
         protected internal MeasuresPage(IMeasuresRepository r) : base(r)
         {
             PageTitle = "Measures";
-
         }
 
         public override string ItemId => Item.Id;

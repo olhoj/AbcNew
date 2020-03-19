@@ -6,7 +6,7 @@ using System;
 namespace Tests.Data.Common
 {
     [TestClass]
-    public class DefinedDataTests : AbstractClassTest<DefinedEntityData, NamedEntityData>
+    public class DefinedEntityDataTests : AbstractClassTest<DefinedEntityData, NamedEntityData>
     {
         private class testClass : DefinedEntityData { }
 
@@ -21,7 +21,6 @@ namespace Tests.Data.Common
         public void DefinitionTest()
         {
             IsNullableProperty(() => obj.Definition, x => obj.Definition = x);
-
         }
     }
 }
