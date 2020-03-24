@@ -8,16 +8,20 @@ namespace Abc.Soft
     {
         public EditModel(IMeasuresRepository r) : base(r){}
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(string id, string fixedFilter, string fixedValue)
         {
+            FixedFilter = fixedFilter;
+            FixedValue = fixedValue;
             await getObject(id);
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string fixedFilter, string fixedValue)
         {
+            FixedFilter = fixedFilter;
+            FixedValue = fixedValue;
             await updateObject();
-            return RedirectToPage("./Index");
+            return Redirect($"/Quantity/Measures/Index?fixedFilter={FixedFilter}&fixedValue={FixedValue}");
         }
 
     }

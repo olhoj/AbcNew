@@ -8,7 +8,7 @@
 }
 
 @section Create {
-    @Html.HypertextLinkFor(string.Empty, new Link(Constants.CreateNewLinkTitle, $"{page}/Create"))}
+    @Html.HypertextLinkFor(string.Empty, new Link(Constants.CreateNewLinkTitle, $"{page}/Create?fixedFilter={Model.FixedFilter}&fixedValue={Model.FixedValue}"))}
 
 <body>
     <table class="table">

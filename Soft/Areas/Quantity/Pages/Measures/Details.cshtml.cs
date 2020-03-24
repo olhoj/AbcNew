@@ -19,8 +19,10 @@ namespace Abc.Soft
         {
         }
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(string id, string fixedFilter, string fixedValue)
         {
+            FixedFilter = fixedFilter;
+            FixedValue = fixedValue;
             await getObject(id);
             return Page();
         }

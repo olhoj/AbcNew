@@ -25,7 +25,9 @@
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index"
+       asp-route-fixedFilter="@Model.FixedFilter"
+       asp-route-fixedValue="@Model.FixedValue">Back to full List</a>
 </div>
 
 @section Scripts {
