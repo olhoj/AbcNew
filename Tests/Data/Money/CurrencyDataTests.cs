@@ -8,7 +8,7 @@ using System.Text;
 namespace Abc.Tests.Data.Money
 { 
     [TestClass]
-    class CurrencyDataTests : SealedClassTest<CurrencyData, DefinedEntityData>
+    class CurrencyDataTests : SealedClassTests<CurrencyData, DefinedEntityData>
     {
     }
 }

@@ -8,7 +8,6 @@ namespace Abc.Tests
 {
     public class AssemblyTests
     {
-
         private static string isNotTested => "<{0}> is not tested";
         private static string noClassesInAssembly =>
             "No classes found in assembly {0}";

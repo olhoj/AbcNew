@@ -6,7 +6,7 @@ using System;
 namespace Tests.Data.Common
 {
     [TestClass]
-    public class DefinedEntityDataTests : AbstractClassTest<DefinedEntityData, NamedEntityData>
+    public class DefinedEntityDataTests : AbstractClassTests<DefinedEntityData, NamedEntityData>
     {
         private class testClass : DefinedEntityData { }
 

@@ -1,5 +1,4 @@
 ﻿using Abc.Aids;
-using Abc.Data.Quantity;
 using Abc.Domain.Common;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -12,16 +11,16 @@ using System.Threading.Tasks;
 namespace Abc.Pages
 {
     public abstract class BasePage<TRepository, TDomain, TView, TData> : PageModel
-        where TRepository: ICrudMethods<TDomain>, ISorting, IFiltering, IPaging
+        where TRepository : ICrudMethods<TDomain>, ISorting, IFiltering, IPaging
     {
-         private TRepository db;
+        private TRepository db;
 
         protected internal BasePage(TRepository r)
-         {
-                db = r;
-         }
+        {
+            db = r;
+        }
 
-         [BindProperty]
+        [BindProperty]
         public TView Item { get; set; }
         public IList<TView> Items { get; set; }
         public abstract string ItemId { get; }
@@ -33,6 +32,12 @@ namespace Abc.Pages
         public int TotalPages => db.TotalPages;
         public string PageTitle { get; set; }
         public string PageSubTitle => getPageSubtitle();
+        public string IndexUrl => getIndexUrl();
+
+        protected internal virtual string getIndexUrl()
+        {
+            return $"{PageUrl}/Index?fixedFilter={FixedFilter}&fixedValue={FixedValue}";
+        }
 
         protected internal virtual string getPageSubtitle()
         {
@@ -44,19 +49,26 @@ namespace Abc.Pages
 
         public string FixedFilter { get => db.FixedFilter; set => db.FixedFilter = value; }
         public string FixedValue { get => db.FixedValue; set => db.FixedValue = value; }
+        public string PageUrl => getPageUrl();
 
-        protected internal async Task<bool> addObject()
-            //TODO
-            // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-            // more details see https://aka.ms/RazorPagesCRUD.
-            {
-                if (!ModelState.IsValid) return false;
-                try { await db.Add(toObject(Item)); }
-                catch { return false; }
-                return true;
-            }
-        protected internal async Task updateObject()
-            {
+        protected internal abstract string getPageUrl();
+
+        protected internal async Task<bool> addObject(string fixedFilter, string fixedValue)
+        //TODO
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
+        // more details see https://aka.ms/RazorPagesCRUD.
+        { 
+            FixedFilter = fixedFilter;
+            FixedValue = fixedValue;
+            if (!ModelState.IsValid) return false;
+            try { await db.Add(toObject(Item)); }
+            catch { return false; }
+            return true;
+        }
+        protected internal async Task updateObject(string fixedFilter, string fixedValue)
+        {
+            FixedFilter = fixedFilter;
+            FixedValue = fixedValue;
                 //TODO
                 // To protect from overposting attacks, please enable the specific properties you want to bind to, for
                 // more details see https://aka.ms/RazorPagesCRUD.
@@ -66,16 +78,20 @@ namespace Abc.Pages
 
         protected internal abstract TDomain toObject(TView view);
 
-        protected internal async Task getObject(string id)
+        protected internal async Task getObject(string id, string fixedFilter, string fixedValue)
             {
+            FixedFilter = fixedFilter;
+            FixedValue = fixedValue;
                 var o = await db.Get(id);
                 Item = toView(o);
             }
 
         protected internal abstract TView toView(TDomain obj);
 
-        protected internal async Task deleteObject(string id)
+        protected internal async Task deleteObject(string id, string fixedFilter, string fixedValue)
             {
+            FixedFilter = fixedFilter;
+            FixedValue = fixedValue;
                 await db.Delete(id);
             }
         public string GetSortString(Expression<Func<TData, object>> e, string page)

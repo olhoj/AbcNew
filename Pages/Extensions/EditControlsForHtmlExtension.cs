@@ -7,28 +7,28 @@ using System.Text;
 
 namespace Abc.Pages.Extensions
 {
-    public static class EditControlsForHtmlExtension
+    public static class EditControlsForHtmlExtensions
     {
         public static IHtmlContent EditControlsFor<TClassType, TPropertyType>(
+
             this IHtmlHelper<TClassType> htmlHelper, Expression<Func<TClassType, TPropertyType>> expression)
         {
-            var s = htmlString(htmlHelper, expression); 
+            var s = htmlStrings(htmlHelper, expression);
             return new HtmlContentBuilder(s);
         }
 
-        internal static List<object> htmlString<TClassType, TPropertyType>(
-            IHtmlHelper<TClassType> htmlHelper, Expression<Func<TClassType, 
-                TPropertyType>> expression)
+        internal static List<object> htmlStrings<TClassType, TPropertyType>(IHtmlHelper<TClassType> htmlHelper,
+            Expression<Func<TClassType, TPropertyType>> expression)
         {
             return new List<object>
             {
                 new HtmlString("<div class=\"form-group\">"),
-                htmlHelper.LabelFor(expression,new{@class="text-dark"}),
-                htmlHelper.EditorFor(expression,new {htmlAttributes=new{@class="form-control" } }),
-                htmlHelper.ValidationMessageFor(expression,"",new{@class="text-danger"}),
+                htmlHelper.LabelFor(expression, new {@class = "text-dark"}),
+                htmlHelper.EditorFor(expression, new {htmlAttributes = new {@class = "form-control"}}),
+                htmlHelper.ValidationMessageFor(expression, "", new {@class = "text-danger"}),
                 new HtmlString("</div>")
             };
         }
     }
-    }
+}
 

@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Abc.Tests.Domain.Common
 {
-    public class EntityTests : AbstractClassTest<Entity<MeasureData>, object>
+    public class EntityTests : AbstractClassTests<Entity<MeasureData>, object>
     {
         private class testClass : Entity<MeasureData> 
         { 

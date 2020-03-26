@@ -10,18 +10,14 @@ namespace Abc.Soft.Areas.Quantity.Pages.Units
 
         public async Task<IActionResult> OnGetAsync(string id, string fixedFilter, string fixedValue)
         {
-            FixedFilter = fixedFilter;
-            FixedValue = fixedValue;
-            await getObject(id);
+            await getObject(id, fixedFilter, fixedValue);
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(string fixedFilter, string fixedValue)
         {
-            FixedFilter = fixedFilter;
-            FixedValue = fixedValue;
-            await updateObject();
-            return Redirect($"/Quantity/Units/Index?fixedFilter={FixedFilter}&fixedValue={FixedValue}");
+            await updateObject(fixedFilter, fixedValue);
+            return Redirect(PageUrl);
         }
 
     }

@@ -16,11 +16,11 @@ using System.Threading.Tasks;
 namespace Abc.Tests.Infra
 {
     [TestClass]
-    public class SortedRepositoryTests:AbstractClassTest<SortedRepository<Measure, MeasureData>, BaseRepository<Measure, MeasureData>>
+    public class SortedRepositoryTests:AbstractClassTests<SortedRepository<Measure, MeasureData>, BaseRepository<Measure, MeasureData>>
     {
-        private class testClass : SortedRepository<Measure, MeasureData>
+        private class TestClass : SortedRepository<Measure, MeasureData>
         {
-            public testClass (DbContext c, DbSet <MeasureData> s): base(c, s) { }
+            public TestClass (DbContext c, DbSet <MeasureData> s): base(c, s) { }
             protected override async Task<MeasureData> getData(string id)
             {
                 await Task.CompletedTask;
@@ -28,8 +28,6 @@ namespace Abc.Tests.Infra
             }
 
             protected internal override Measure toDomainObject(MeasureData d)=> new Measure(d);
-            
-
         }
         [TestInitialize]
         public override void TestInitialize()
@@ -37,17 +35,16 @@ namespace Abc.Tests.Infra
             base.TestInitialize();
             var options = new DbContextOptionsBuilder<QuantityDbContext>().UseInMemoryDatabase("TestDb").Options;
             var c = new QuantityDbContext(options);
-            obj = new testClass(c, c.Measures);
+            obj = new TestClass(c, c.Measures);
         }
 
-        
         [TestMethod] public void SortOrderTest() {
             IsNullableProperty(() => obj.SortOrder, x => obj.SortOrder = x);
         }
 
         [TestMethod] public void DescendingStringTest()
         {
-            var propertyName = GetMember.Name<testClass>(x => x.DescendingString);
+            var propertyName = GetMember.Name<TestClass>(x => x.DescendingString);
             IsReadOnlyProperty(obj, propertyName, "_desc");
         }
 
@@ -159,8 +156,6 @@ namespace Abc.Tests.Infra
             test(typeof(MeasureData).GetProperty(s = GetMember.Name<MeasureData>(x => x.Definition)), s + obj.DescendingString);
             test(typeof(MeasureData).GetProperty(s = GetMember.Name<MeasureData>(x => x.Code)), s + obj.DescendingString);
             test(typeof(MeasureData).GetProperty(s = GetMember.Name<MeasureData>(x => x.Id)), s + obj.DescendingString);
-
-
         }
 
         [TestMethod]
@@ -214,17 +209,16 @@ namespace Abc.Tests.Infra
         [TestMethod]
         public void IsDecendingTest()
         {
-            void test(string sortOrder, bool expected)
+            void Test(string sortOrder, bool expected)
             {
                 obj.SortOrder = sortOrder;
                 Assert.AreEqual(expected, obj.isDecending());
             }
 
-
-            test(GetRandom.String(), false);
-            test(GetRandom.String() + obj.DescendingString, true);
-            test(string.Empty, false);
-            test(null, false);
+            Test(GetRandom.String(), false);
+            Test(GetRandom.String() + obj.DescendingString, true);
+            Test(string.Empty, false);
+            Test(null, false);
         }             
 
     }

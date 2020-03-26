@@ -2,12 +2,11 @@
 using Abc.Data.Quantity;
 using Abc.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace Tests.Data.Quantity
 {
     [TestClass]
-    public class UnitfactorDataTests : SealedClassTest<UnitFactorData, PeriodData>
+    public class UnitfactorDataTests : SealedClassTests<UnitFactorData, PeriodData>
     {
         [TestMethod]
         public void FactorTest()
@@ -16,21 +15,16 @@ namespace Tests.Data.Quantity
 
         }
 
-        
-
         [TestMethod]
         public void SystemOfUnitsIdTest()
         {
             IsNullableProperty(() => obj.SystemOfUnitsId, x => obj.SystemOfUnitsId = x);
-
         }
 
         [TestMethod]
         public void UnitIdTest()
         {
             IsNullableProperty(() => obj.UnitId, x => obj.UnitId = x);
-
         }
-
     }
 }

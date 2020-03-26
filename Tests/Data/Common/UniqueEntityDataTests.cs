@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Tests.Data.Common
 {
     [TestClass]
-    public class UniqueEntityDataTests : AbstractClassTest<UniqueEntityData, PeriodData>
+    public class UniqueEntityDataTests : AbstractClassTests<UniqueEntityData, PeriodData>
     {
         private class testClass : UniqueEntityData { }
 
@@ -20,7 +20,6 @@ namespace Tests.Data.Common
         public void IdTest()
         {
             IsNullableProperty(() => obj.Id, x => obj.Id = x);
-
         }
     }
 }
