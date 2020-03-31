@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Abc.Pages.Extensions
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -25,6 +26,27 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                        @Html.DropDownNavigationMenuFor("File",
+                            new Link("Marketing", "/Processes/Marketing"),
+                            new Link("CRM", "/Processes/CRM"),
+                            new Link("Recruiting", "/Processes/Recruiting"),
+                            new Link("Catalog", "/Inventory/Inventory"),
+                            new Link("Inventory", "/Inventory/Units"),
+                            new Link("Sales", "/Orders/Sales"),
+                            new Link("Purchases", "/Orders/Purchases"),
+                            new Link("Persons", "/Party/Persons"),
+                            new Link("Organizations", "/Party/Organizations"))
+                        @Html.DropDownNavigationMenuFor("Data",
+                            new Link("Measures", "/Quantity/Measures"),
+                            new Link("Units", "/Quantity/Units"),
+                            new Link("Currencies", "/Money/Currencies"),
+                            new Link("Countries", "/Party/Countries"),
+                            new Link("Roles", "/Party/Roles"),
+                            new Link("Products", "/Inventory/Products"),
+                            new Link("Calculator", "/Quantity/Calculator"))
+                        @Html.DropDownNavigationMenuFor("Help",
+                            new Link("About", "/Index"),
+                            new Link("Privacy", "/Privacy"))
                     </ul>
                 </div>
             </div>
