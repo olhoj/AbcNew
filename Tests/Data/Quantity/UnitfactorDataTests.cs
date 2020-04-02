@@ -12,7 +12,6 @@ namespace Tests.Data.Quantity
         public void FactorTest()
         {
             IsProperty(() => obj.Factor, x => obj.Factor = x);
-
         }
 
         [TestMethod]
