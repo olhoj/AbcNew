@@ -1,13 +1,11 @@
 ﻿using Abc.Aids;
 using Abc.Data.Quantity;
 using Abc.Domain.Quantity;
+using Abc.Facade.Quantity;
 using Abc.Infra.Quantity;
 using Abc.Pages;
 using Abc.Pages.Quantity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Abc.Tests.Pages.Quantity
 {

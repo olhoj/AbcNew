@@ -2,7 +2,7 @@
 
 namespace Abc.Facade.Quantity
 {
-    public sealed class MeasureView : DefinedView
+    public sealed class SystemOfUnitsView : DefinedView
     {
     }
 }

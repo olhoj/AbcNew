@@ -4,11 +4,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Abc.Facade.Quantity
 {
-    public class UnitView : DefinedView
+    public sealed class UnitView: DefinedView
     {
         [Required]
         [DisplayName("Measure")]
-
         public string MeasureId { get; set; }
     }
 }

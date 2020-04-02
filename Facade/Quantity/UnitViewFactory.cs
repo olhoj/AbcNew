@@ -1,4 +1,5 @@
-﻿using Abc.Domain.Quantity;
+﻿using Abc.Aids;
+using Abc.Domain.Quantity;
 
 namespace Abc.Facade.Quantity
 {
@@ -7,10 +8,9 @@ namespace Abc.Facade.Quantity
         public static Unit Create(UnitView v)
         {
             var o = new Unit();
-            Copy.Members(v, o.Data);
-            return o; 
+            Copy.Members(v,o.Data);
+            return o;
         }
-
         public static UnitView Create(Unit o)
         {
             var v = new UnitView();

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace Soft.Pages
+namespace Abc.Soft.Pages
 {
     public class PrivacyModel : PageModel
     {
@@ -12,8 +12,6 @@ namespace Soft.Pages
             _logger = logger;
         }
 
-        public void OnGet()
-        {
-        }
+        public void OnGet() { }
     }
 }
