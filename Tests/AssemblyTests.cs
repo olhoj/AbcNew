@@ -148,7 +148,5 @@ namespace Abc.Tests
         {
             return className.Substring(assembly.Length);
         }
-
     }
-
 }

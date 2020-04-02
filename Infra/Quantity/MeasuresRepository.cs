@@ -3,7 +3,7 @@ using Abc.Data.Quantity;
 
 namespace Abc.Infra.Quantity
 {
-    public class MeasuresRepository : UniqueEntityRepository<Measure, MeasureData>, IMeasuresRepository
+    public sealed class MeasuresRepository : UniqueEntityRepository<Measure, MeasureData>, IMeasuresRepository
     {
         public MeasuresRepository(QuantityDbContext c) : base(c, c.Measures) { }
         

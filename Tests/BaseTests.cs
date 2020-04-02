@@ -28,7 +28,7 @@ namespace Abc.Tests
         private void RemoveTested()
         {
             var tests = GetType().GetMembers().Select(e => e.Name).ToList();
-            for (var i = members.Count; i > 0; i++)
+            for (var i = members.Count; i > 0; i--)
             {
                 var m = members[i - 1] + "Test";
                 var isTested = tests.Find(o => o == m);
