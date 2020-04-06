@@ -34,8 +34,4 @@
     <ProjectReference Include="..\Soft\Soft.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Infra\Quantity\" />
-  </ItemGroup>
-
 </Project>

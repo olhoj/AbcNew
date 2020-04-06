@@ -68,7 +68,7 @@ namespace Abc.Infra
 
             Expression body = Expression.Property(param, p);
                 if (p.PropertyType != typeof(string))
-                    body = Expression.Call(body, "ToString", null);
+                body = Expression.Call(body, "ToString", null);
                 body = Expression.Call(body, "Contains", null, Expression.Constant(SearchString));
                 predicate = predicate is null ? body : Expression.Or(predicate, body);
 
