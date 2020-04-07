@@ -2,6 +2,7 @@
 using Abc.Aids;
 using Abc.Data.Common;
 using Abc.Domain.Common;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Abc.Tests.Infra
@@ -12,13 +13,41 @@ namespace Abc.Tests.Infra
     where TObject : Entity<TData>
     where TData : PeriodData, new()
     {
-        private TData data;
+        protected TData data;
         protected TRepository obj;
+        protected DbContext db;
+        protected int count;
+        protected DbSet<TData> dbSet;
 
         public virtual void TestInitialize()
         {
             type = typeof(TRepository);
             data = GetRandom.Object<TData>();
+            count = GetRandom.UInt8(20, 40);
+            cleanDbSet();
+            addItems();
+        }
+        protected void testGetList()
+        {
+            obj.PageIndex = GetRandom.Int32(2, obj.TotalPages - 1);
+            var l = obj.Get().GetAwaiter().GetResult();
+            Assert.AreEqual(obj.PageSize, l.Count);
+        }
+
+        [TestCleanup]
+        public void TestCleanup() => cleanDbSet();
+
+        protected void cleanDbSet()
+        {
+            foreach (var p in dbSet)
+                db.Entry(p).State = EntityState.Deleted;
+            db.SaveChanges();
+        }
+
+        protected void addItems()
+        {
+            for (var i = 0; i < count; i++)
+                obj.Add(getObject(GetRandom.Object<TData>())).GetAwaiter();
         }
 
         [TestMethod]
@@ -31,8 +60,6 @@ namespace Abc.Tests.Infra
 
         [TestMethod]
         public void GetTest() => testGetList();
-
-        protected abstract void testGetList();
 
         [TestMethod]
         public void GetByIdTest() => AddTest();

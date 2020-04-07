@@ -35,6 +35,18 @@ namespace Abc.Tests
             Assert.AreEqual(d, get());
         }
 
+        protected static void IsNullableProperty(object o, string name, Type type)
+        {
+            var property = o.GetType().GetProperty(name);
+            Assert.IsNotNull(property);
+            Assert.AreEqual(type, property.PropertyType);
+            Assert.IsTrue(property.CanWrite);
+            Assert.IsTrue(property.CanRead);
+            property.SetValue(o, null);
+            var actual = property.GetValue(o);
+            Assert.AreEqual(null, actual);
+        }
+
         protected static void IsReadOnlyProperty(object o, string name,object expected)
         {
             var property = o.GetType().GetProperty(name);

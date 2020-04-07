@@ -16,7 +16,6 @@ namespace Abc.Tests.Infra
         private MeasureData data;
         private class testClass : BaseRepository<Measure, MeasureData>
         {
-
             public testClass(DbContext c, DbSet<MeasureData> s) : base(c, s) { }
 
             protected internal override Measure toDomainObject(MeasureData d) => new Measure(d);
@@ -88,7 +87,5 @@ namespace Abc.Tests.Infra
             var expected = obj.Get(data.Id).GetAwaiter().GetResult();
             TestArePropertyValuesEqual(newData, expected.Data);
         }
-
     }
-
 }

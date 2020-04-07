@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Abc.Tests.Infra.Quantity
 {
     [TestClass]
-    public class MeasuresRepositoryTests : RepositoryTests<MeasuresRepository, Measure, MeasureData>
+    public class UnitsRepositoryTests: RepositoryTests<UnitsRepository, Unit, UnitData>
     {
         [TestInitialize]
         public override void TestInitialize()
@@ -18,17 +18,16 @@ namespace Abc.Tests.Infra.Quantity
                 .UseInMemoryDatabase("TestDb")
                 .Options;
             db = new QuantityDbContext(options);
-            dbSet = ((QuantityDbContext)db).Measures;
-            obj = new MeasuresRepository((QuantityDbContext)db);
+            dbSet = ((QuantityDbContext)db).Units;
+            obj = new UnitsRepository((QuantityDbContext)db);
             base.TestInitialize();
         }
+        protected override Type getBaseType() => typeof(UniqueEntityRepository<Unit, UnitData>);
 
-        protected override Type getBaseType() => typeof(UniqueEntityRepository<Measure, MeasureData>);
+        protected override string getId(UnitData d) => d.Id;
 
-        protected override string getId(MeasureData d) => d.Id;
+        protected override Unit getObject(UnitData d)=> new Unit(d);
 
-        protected override Measure getObject(MeasureData d) => new Measure(d);
-
-        protected override void setId(MeasureData d, string id) => d.Id = id;
+        protected override void setId(UnitData d, string id) => d.Id = id;
     }
 }

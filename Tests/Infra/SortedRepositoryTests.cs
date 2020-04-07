@@ -203,8 +203,6 @@ namespace Abc.Tests.Infra
             test(data, x => x.ValidTo, "x => Convert(x.ValidTo, Object)");
 
         }
-               
-
         [TestMethod]
         public void IsDecendingTest()
         {
@@ -218,8 +216,6 @@ namespace Abc.Tests.Infra
             Test(GetRandom.String() + obj.DescendingString, true);
             Test(string.Empty, false);
             Test(null, false);
-        }             
-
+        }    
     }
-
 }
